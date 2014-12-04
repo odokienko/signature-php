@@ -12,7 +12,7 @@ Add `philipbrown/signature-php` as a requirement to `composer.json`:
 ```json
 {
   "require": {
-    "philipbrown/signature-php": "~2.0"
+    "odokienko/signature-php": "~3.0"
   }
 }
 ```
@@ -23,8 +23,8 @@ HMAC-SHA authentication allows you to implement very simple key / secret authent
 
 ## Making a request
 ```php
-use PhilipBrown\Signature\Token;
-use PhilipBrown\Signature\Request;
+use Odokienko\Signature\Token;
+use Odokienko\Signature\Request;
 
 $data    = ['name' => 'Philip Brown'];
 $token   = new Token('abc123', 'qwerty');
@@ -38,9 +38,9 @@ $http->post('users', array_merge($auth, $data));
 
 ## Authenticating a response
 ```php
-use PhilipBrown\Signature\Auth;
-use PhilipBrown\Signature\Token;
-use PhilipBrown\Signature\Exceptions\SignatureException;
+use Odokienko\Signature\Auth;
+use Odokienko\Signature\Token;
+use Odokienko\Signature\Exceptions\SignatureException;
 
 $auth  = new Auth('POST', 'users', $_POST);
 $token = new Token('abc123', 'qwerty');

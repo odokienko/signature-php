@@ -1,6 +1,8 @@
 <?php namespace PhilipBrown\Signature;
 
-class Request
+//use Carbon\Carbon;
+
+class Response
 {
     /**
      * @var string
@@ -20,7 +22,7 @@ class Request
     /**
      * @var array
      */
-    private $params;
+    public $to_sign;
 
     /**
      * Create a new Request
@@ -29,11 +31,12 @@ class Request
      * @param string $uri
      * @param array $params
      */
-    public function __construct($method, $uri, array $params)
+    public function __construct($method, $uri, array $body, array $auth)
     {
         $this->method = strtoupper($method);
         $this->uri    = $uri;
-        $this->params = $params;
+        $this->body = $body;
+        $this->auth = $auth;
     }
 
     /**
@@ -47,15 +50,14 @@ class Request
         $auth = [
             'auth_version'   => $this->version,
             'auth_key'       => $token->key(),
-            'auth_timestamp' => strval(gmmktime())
+            'auth_timestamp' => !empty($this->auth['auth_timestamp']) ? $this->auth['auth_timestamp'] : 0
         ];
         
-        $payload = $this->payload($auth, $this->params);
-
+        $payload = $this->payload($auth, $this->body);
+        
         $signature = $this->signature($payload, $this->method, $this->uri, $token->secret());
 
         $auth['auth_signature'] = $signature;
-       
         return $auth;
     }
 
@@ -91,7 +93,9 @@ class Request
         $payload = urldecode(http_build_query($payload));
 
         $payload = implode("\n", [$method, $uri, $payload]);
-
+        
+        $this->to_sign = $payload;
+        
         return hash_hmac('sha256', $payload, $secret);
     }
 }

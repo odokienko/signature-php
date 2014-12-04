@@ -1,6 +1,6 @@
 <?php namespace PhilipBrown\Signature\Guards;
 
-use Carbon\Carbon;
+//use Carbon\Carbon;
 use PhilipBrown\Signature\Exceptions\SignatureTimestampException;
 
 class CheckTimestamp implements Guard
@@ -35,7 +35,7 @@ class CheckTimestamp implements Guard
             throw new SignatureTimestampException('The timestamp has not been set');
         }
 
-        if (($auth['auth_timestamp'] - Carbon::now()->timestamp) >= $this->grace) {
+        if (($auth['auth_timestamp'] - gmmktime()) >= $this->grace) {
             throw new SignatureTimestampException('The timestamp is invalid');
         }
 

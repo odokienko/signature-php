@@ -31,7 +31,9 @@ class Auth
         'auth_timestamp',
         'auth_signature'
     ];
-
+    
+    public $to_sign;
+    
     /**
      * Create a new Auth instance
      *
@@ -63,10 +65,11 @@ class Auth
     public function attempt(Token $token)
     {
         $auth = $this->getAuthParams();
+
         $body = $this->getBodyParams();
 
-        $request   = new Request($this->method, $this->uri, $body);
-        $signature = $request->sign($token);
+        $response   = new Response($this->method, $this->uri, $body, $auth);
+        $signature = $response->sign($token);
 
         foreach ($this->guards as $guard) {
             $guard->check($auth, $signature);
@@ -74,13 +77,35 @@ class Auth
 
         return true;
     }
+    
+    /**
+     * Attempt to authenticate a request
+     *
+     * @param Token $token
+     * @return bool
+     */
+    public function debug_attempt(Token $token)
+    {
+        $auth = $this->getAuthParams();
+
+        $body = $this->getBodyParams();
+
+        $response   = new Response($this->method, $this->uri, $body, $auth);
+        
+
+        $signature = $response->sign($token);
+        
+        $this->to_sign = $response->to_sign;
+        
+        return $signature;
+    }
 
     /**
      * Get the auth params
      *
      * @return array
      */
-    private function getAuthParams()
+    public function getAuthParams()
     {
         return array_intersect_key($this->params, array_flip($this->auth));
     }
@@ -90,7 +115,7 @@ class Auth
      *
      * @return array
      */
-    private function getBodyParams()
+    public function getBodyParams()
     {
         return array_diff_key($this->params, array_flip($this->auth));
     }
