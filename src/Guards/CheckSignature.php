@@ -1,6 +1,6 @@
-<?php namespace PhilipBrown\Signature\Guards;
+<?php namespace Odokienko\Signature\Guards;
 
-use PhilipBrown\Signature\Exceptions\SignatureSignatureException;
+use Odokienko\Signature\Exceptions\SignatureSignatureException;
 
 class CheckSignature implements Guard
 {

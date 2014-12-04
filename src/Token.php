@@ -1,4 +1,4 @@
-<?php namespace PhilipBrown\Signature;
+<?php namespace Odokienko\Signature;
 
 class Token
 {

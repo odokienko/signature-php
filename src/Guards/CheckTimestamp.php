@@ -1,7 +1,7 @@
-<?php namespace PhilipBrown\Signature\Guards;
+<?php namespace Odokienko\Signature\Guards;
 
 //use Carbon\Carbon;
-use PhilipBrown\Signature\Exceptions\SignatureTimestampException;
+use Odokienko\Signature\Exceptions\SignatureTimestampException;
 
 class CheckTimestamp implements Guard
 {

@@ -1,6 +1,6 @@
-<?php namespace PhilipBrown\Signature\Guards;
+<?php namespace Odokienko\Signature\Guards;
 
-use PhilipBrown\Signature\Signature;
+use Odokienko\Signature\Signature;
 
 interface Guard
 {

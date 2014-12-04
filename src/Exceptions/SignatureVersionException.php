@@ -1,4 +1,4 @@
-<?php namespace PhilipBrown\Signature\Exceptions;
+<?php namespace Odokienko\Signature\Exceptions;
 
 class SignatureVersionException extends SignatureException
 {

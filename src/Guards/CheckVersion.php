@@ -1,7 +1,7 @@
-<?php namespace PhilipBrown\Signature\Guards;
+<?php namespace Odokienko\Signature\Guards;
 
-use PhilipBrown\Signature\Signature;
-use PhilipBrown\Signature\Exceptions\SignatureVersionException;
+use Odokienko\Signature\Signature;
+use Odokienko\Signature\Exceptions\SignatureVersionException;
 
 class CheckVersion implements Guard
 {

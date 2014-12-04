@@ -1,9 +1,9 @@
-<?php namespace PhilipBrown\Signature;
+<?php namespace Odokienko\Signature;
 
-use PhilipBrown\Signature\Guards\CheckKey;
-use PhilipBrown\Signature\Guards\CheckVersion;
-use PhilipBrown\Signature\Guards\CheckTimestamp;
-use PhilipBrown\Signature\Guards\CheckSignature;
+use Odokienko\Signature\Guards\CheckKey;
+use Odokienko\Signature\Guards\CheckVersion;
+use Odokienko\Signature\Guards\CheckTimestamp;
+use Odokienko\Signature\Guards\CheckSignature;
 
 class Auth
 {
