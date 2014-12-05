@@ -15,12 +15,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Odokiienko\\Signature\\": "src"
+            "Odokienko\\Signature\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Odokiienko\\Signature\\Tests\\": "tests"
+            "Odokienko\\Signature\\Tests\\": "tests"
         }
     },
     "require": {
